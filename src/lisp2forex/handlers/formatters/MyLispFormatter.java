@@ -56,7 +56,7 @@ public class MyLispFormatter implements Formatter {
 	
 	synchronized public String format(List<IOrder> orders) {
 		StringBuilder str = new StringBuilder();
-		str.append("(orders . (");
+		str.append("(:orders . (");
 		for (IOrder order : orders) {
 			str.append("(:" + order.getLabel() + " . (");
 			str.append("(:pair . :" + order.getInstrument().name() + ")");
@@ -75,6 +75,6 @@ public class MyLispFormatter implements Formatter {
 	}
 	
 	synchronized public String format(Exception e) {
-		return e.toString();
+		return "(:error . (\"" + e.toString() + "\"))";
 	}
 }
